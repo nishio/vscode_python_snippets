@@ -46,8 +46,16 @@ ${3:result}
 ''')
 
 push("dp", """
-debug("$1", $1)
+debug("$2$1", $1)
 """)
+
+push("perf", """
+start_time = perf_counter()
+${TM_SELECTED_TEXT}
+debug(f"$1: {(perf_counter() - start_time):.2f}")
+""")
+
+push("impperf", "from time import perf_counter")
 
 push("bp", """
 if ${1:True}:
